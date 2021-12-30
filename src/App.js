@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Sidebar from "./components/sidebar/Sidebar";
+import Topbar from "./components/topbar/Topbar";
+import "./app.css";
+import Asosiy from "./components/pages/home/Asosiy";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import UserList from "./components/pages/userList/UserList";
+import User from "./components/pages/user/User";
+import NewUser from "./components/pages/newUser/NewUser";
+import ClientList from "./components/pages/clientList/ClientList";
+import Client from "./components/pages/client/Client";
+import NewClient from "./components/pages/newClient/NewClient";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Topbar />
+      <div className="container">
+        <Sidebar />
+        <Routes>
+          <Route exact path="/" element={<Asosiy />} />
+          <Route path="/users" element={<UserList/>} />
+          <Route path="/users/:userId" element={<User/>} />
+          <Route path="/newUser" element={<NewUser/>} />
+          <Route path="/clients" element={<ClientList/>} />
+          <Route path="/clients/:clientId" element={<Client/>} />
+          <Route path="/newClient" element={<NewClient/>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
